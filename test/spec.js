@@ -6,11 +6,11 @@ describe('addNumbers', function() {
 	});
 
 	it("should get the number of consecutive digits", function() {
-		expect(digitLength([2,3,5], 0)).toBe(3);
-		expect(digitLength([2,'a',5], 0)).toBe(1);
-		expect(digitLength([8,8,'H','e','l','l','o',3,'W','o'], 0)).toBe(2);
-		expect(digitLength([8,8,'H','e','l','l','o',3,'W','o'], 1)).toBe(1);
-		expect(digitLength([8,8,'H','e','l','l','o',3,'W','o'], 2)).toBe(0);
+		expect(ruleLength([2,3,5], 0, isNumber)).toBe(3);
+		expect(ruleLength([2,'a',5], 0, isNumber)).toBe(1);
+		expect(ruleLength([8,8,'H','e','l','l','o',3,'W','o'], 0, isNumber)).toBe(2);
+		expect(ruleLength([8,8,'H','e','l','l','o',3,'W','o'], 1, isNumber)).toBe(1);
+		expect(ruleLength([8,8,'H','e','l','l','o',3,'W','o'], 2, isNumber)).toBe(0);
 	});
 
   it('should add all numbers in a string', function() {
@@ -19,4 +19,21 @@ describe('addNumbers', function() {
   	expect(addNumbers("5Hello5")).toEqual(10);
 
   });
+});
+
+describe("longestWord", function() {
+
+	it("should check if value is a letter", function() {
+		expect(isLetter('a')).toBe(true);
+		expect(isLetter('D')).toBe(true);
+		expect(isLetter('1')).toBe(false);
+		expect(isLetter(' ')).toBe(false);
+		expect(isLetter('!')).toBe(false);
+		expect(isLetter('')).toBe(false);
+	});
+
+	it("should return the largest word in a string", function() {
+		expect(longestWord('takes a single string parameter')).toBe('parameter');
+		expect(longestWord('takes a single string')).toBe('single');
+	});
 });

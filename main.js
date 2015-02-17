@@ -2,11 +2,17 @@ var isNumber = function(val){
 	return !isNaN(parseInt(val));
 };
 
-var digitLength = function(arr, i, sum){
+var isLetter = function(val){
+	if (!val) return false;
+	var char = val.toLowerCase().charCodeAt(0);
+	return (char >= 97 && char <= 122);
+};
+
+var ruleLength = function(arr, i, f, sum){
 	sum = sum || 0;
-	if (isNumber(arr[i])) {
+	if (f(arr[i])) {
 		sum++;
-		return digitLength(arr, ++i, sum);
+		return ruleLength(arr, ++i, f, sum);
 	}
 	return sum;
 };
@@ -17,7 +23,7 @@ var addNumbers = function(str){
 	var sum = 0;
 
 	for (var i = 0; i < arr.length; i++) {
-		var numLn = digitLength(arr, i);
+		var numLn = ruleLength(arr, i, isNumber);
 		if (numLn) {
 			sum += parseInt(arr.slice(i, i+numLn).join(''));
 			i += numLn;
@@ -26,3 +32,18 @@ var addNumbers = function(str){
 	return sum;
 
 };
+
+var longestWord = function(str){
+	var arr = str.split('');
+	var longest = '';
+
+	for (var i = 0; i < arr.length; i++) {
+		var letterLength = ruleLength(arr, i, isLetter);
+		if (letterLength) {
+			longest = (longest.length >= letterLength) ? longest : arr.slice(i, i+letterLength).join('');
+			i += letterLength;
+		}
+	}
+	return longest;
+};
+
