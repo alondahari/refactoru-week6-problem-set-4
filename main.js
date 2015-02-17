@@ -47,3 +47,15 @@ var longestWord = function(str){
 	return longest;
 };
 
+var averageStringNumbers = function(str){
+	var arr = str.split('');
+	var numSum = arr.reduce(function (mem, val) {
+		return (isNumber(val)) ? parseInt(val) + mem : mem;
+	}, 0);
+	
+	var letterNum = arr.filter(function(val){
+		return isLetter(val);
+	}).length;
+
+	return Math.round((numSum / letterNum));
+};

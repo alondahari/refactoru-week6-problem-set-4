@@ -37,3 +37,9 @@ describe("longestWord", function() {
 		expect(longestWord('takes a single string')).toBe('single');
 	});
 });
+
+describe("averageStringNumbers", function() {
+	it("should return numbers in string divided by numbers of letters in the string", function() {
+		expect(averageStringNumbers('Hello6 9World 2, Nic8e D7ay!')).toBe(2);		
+	});
+});
